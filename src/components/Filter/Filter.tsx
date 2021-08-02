@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 
 // Actions
-import {changeFilterValue, clearFilterForm} from "../../bus/form/reducer";
+import {changeValue, clearFilterForm} from "../../bus/form/reducer";
 
 const Filter: React.FC = () => {
   const filterValue = useSelector((store: RootState) => store.form.filter);
@@ -17,8 +17,8 @@ const Filter: React.FC = () => {
   }
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = event.target;
-    dispatch(changeFilterValue({value}));
+    const {name, value} = event.target;
+    dispatch(changeValue({type: name, value}));
   }
 
   const onResetHandler = () => {
@@ -32,6 +32,7 @@ const Filter: React.FC = () => {
           type="text"
           className="form-control"
           id="filter"
+          name="filter"
           placeholder="Search..."
           value={filterValue}
           onChange={onChangeHandler}/>

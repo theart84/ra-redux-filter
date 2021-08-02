@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {ITask} from "../../../bus/tasks/interface";
 
 // Actions
-import {changeTextValue, changePriceValue, clearForm} from "../../../bus/form/reducer";
+import {changeValue, clearForm} from "../../../bus/form/reducer";
 import {addCurrentTaskId, clearCurrentTaskId, deleteTask} from "../../../bus/tasks/reducer";
 
 // Styles
@@ -16,8 +16,8 @@ const TaskListItem: React.FC<ITask> = ({id, text, price}) => {
   const dispatch = useDispatch();
 
   const onEditHandler = () => {
-    dispatch(changeTextValue({value: text}))
-    dispatch(changePriceValue({value: price.toString()}))
+    dispatch(changeValue({type: 'text', value: text}));
+    dispatch(changeValue({type: 'price', value: price.toString()}));
     dispatch(addCurrentTaskId({id}))
   }
 

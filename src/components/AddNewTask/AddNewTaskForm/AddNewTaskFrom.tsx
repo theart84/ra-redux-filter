@@ -3,7 +3,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 // Actions
-import {changeTextValue, changePriceValue, clearForm} from '../../../bus/form/reducer';
+import {changeValue, clearForm} from '../../../bus/form/reducer';
 import {addNewTask, editTask, clearCurrentTaskId} from '../../../bus/tasks/reducer';
 
 // Types
@@ -16,11 +16,7 @@ const AddNewTaskFrom: React.FC = () => {
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
-    if (name === 'text') {
-      dispatch(changeTextValue({value}));
-    } else {
-      dispatch(changePriceValue({value}));
-    }
+    dispatch(changeValue({type: name,value}));
   }
 
   const onResetHandler = () => {
